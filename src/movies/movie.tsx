@@ -1,0 +1,21 @@
+import {Movie as MovieModel} from '../models'
+import css from '../stylings/movie.module.css';
+
+export default function Movie (props: MovieModel) {
+
+    const buildLink = () => `/movie/${props.id}`;
+
+    return (
+        <div className={css.div}>
+            <a href={buildLink()}>
+                <img alt="Poster" src={props.poster}></img>
+            </a>
+            <p>
+                <a href={buildLink()}>
+                    {props.title}
+                    </a>
+                </p>
+        </div>
+    );
+
+}

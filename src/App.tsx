@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import routes from './routes';
 import NavBar from './shared/navBar';
+import configureValidations from './utils/validations';
 
 function App() {
 
-  
- 
+  configureValidations();
 
   return (
     <BrowserRouter>

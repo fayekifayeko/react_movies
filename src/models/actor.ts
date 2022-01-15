@@ -3,4 +3,5 @@ export interface Actor {
     dateOfBirth?: Date;
     imgUrl?: string;
     img?: File;
+    biography?: string;
 }

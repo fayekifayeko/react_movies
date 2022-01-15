@@ -5,3 +5,5 @@ export * from './genericList';
 export * from './genre';
 export * from './moviesFilter';
 export * from './actor';
+export * from './theater';
+export * from './coordinate';

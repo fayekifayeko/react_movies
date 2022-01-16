@@ -8,3 +8,4 @@ export * from './actor';
 export * from './theater';
 export * from './coordinate';
 export * from './movieForm';
+export * from './multiSelectedItem';

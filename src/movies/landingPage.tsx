@@ -8,7 +8,7 @@ export default function LandingPage () {
 useEffect(() => {
   const timerId = setTimeout(() =>
     setMovies({
-      inCinemaMovies: [
+      inTheatersMovies: [
         {
           id: 1,
           title: 'Spider man',
@@ -33,8 +33,8 @@ useEffect(() => {
 
     return (
         <>
-        <h1>In Cinema Movies</h1>
-        <MoviesList movies={movies.inCinemaMovies}/>
+        <h1>In Theaters Movies</h1>
+        <MoviesList movies={movies.inTheatersMovies}/>
       
         <h1>Upcoming Movies</h1>
         <MoviesList movies={movies.upcomingMovies}/>

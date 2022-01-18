@@ -14,7 +14,7 @@ export default function MarkdownField (props: MarkdownFieldProps) {
     return (
         <div className="mb-3 form-markdown">
             <div>
-            <label htmlFor={props.fieldName}>{props.fieldLabel}</label>
+            <label style={{display: 'block'}}  htmlFor={props.fieldName}>{props.fieldLabel}</label>
             <Field name={props.fieldName} as="textarea" className="form-texarea" />
             </div>
             <div>

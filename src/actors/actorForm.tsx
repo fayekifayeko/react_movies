@@ -6,7 +6,6 @@ import { DateField, TextField } from "../forms";
 import { Actor } from "../models";
 import ImageField from "../forms/imageField";
 import MarkdownField from "../forms/markdownField";
-
 interface ActorFormProps {
     model: Actor;
     onSubmit(values: Actor, helpers: FormikHelpers<Actor>): void;

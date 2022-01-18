@@ -43,14 +43,14 @@ export default function MultiSelecField (props: MultiSelectFieldProps) {
             <label>{props.fieldLabel}</label>
         <div className="multiple-selector">
             <ul>
-                {props.selectedItems.map(item => <li key={item.key} onClick={() => {select(item)}}>{item.value}</li>)}
+            {props.nonSelectedItems.map(item => <li key={item.key} onClick={() => {select(item)}}>{item.value}</li>)}
             </ul>
             <div className="multiple-selector-butttons">
             <button type="button" onClick={selectAll}>{'>>'}</button>
             <button type="button" onClick={deselectAll}>{'<<'}</button>
             </div>
             <ul>
-                {props.nonSelectedItems.map(item => <li key={item.key} onClick={() => {deselect(item)}}>{item.value}</li>)}
+            {props.selectedItems.map(item => <li key={item.key} onClick={() => {deselect(item)}}>{item.value}</li>)}
             </ul>
         </div>
         </div>

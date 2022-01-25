@@ -4,3 +4,4 @@ export {default as NanBar} from './navBar';
 export {default as Button} from './button';
 export {default as Map } from './map';
 export {default as DisplayErrors } from './displayErrors';
+export {default as RecordPerPageSelector } from './recordPerPageSelector';

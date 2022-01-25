@@ -7,7 +7,7 @@ export default function GenericList<T>(props: GenericListModel<T>) {
         return <Loader />
     } else if (props.list.length === 0) {
         if(props.emptyListUi) return props.emptyListUi;
-        return <h1>There are no movies to display</h1>
+        return <h1>There are no genres to display</h1>
     } else {
         return <>{props.children}</>;
     }

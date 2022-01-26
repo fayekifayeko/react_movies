@@ -5,3 +5,5 @@ export {default as Button} from './button';
 export {default as Map } from './map';
 export {default as DisplayErrors } from './displayErrors';
 export {default as RecordPerPageSelector } from './recordPerPageSelector';
+export {default as EditEntity } from './editEntity';
+export {default as IndexEntity } from './indexEntity';

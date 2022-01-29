@@ -1,22 +1,35 @@
 import { ActorForm } from ".";
+import { actorsApiUrl } from "../endpoints";
+import { Actor } from "../models";
+import { EditEntity } from "../shared";
+import { convertActorToFormData } from "../utils/convertActorToFormData";
 
 export default function EditActor () {
+
+  function transform(entity: Actor): any {
+    return {
+      name: entity.name,
+      dateOfBirth: new Date(entity.dateOfBirth || ''),
+      imgUrl: entity.picture,
+      biography: entity.biography     
+    }
+  }
     return (
         <>
-        <h1>Edit Actor</h1>
-        <ActorForm
-          model={{name: 'Tom Joe', 
-          dateOfBirth: new Date('1996-06-01T00:00:00'), 
-          imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/220px-FullMoon2010.jpg',
-        biography: `# title 
-        **HI**
-        `
-        }}
-          onSubmit={async values => {
-            await new Promise(r => setTimeout(r, 3000));
-            console.log(values);
-        }}
-          />
+            <EditEntity<Actor, Actor>
+        apiUrl={actorsApiUrl}
+        redirectUrl="/actors"
+        entityName="Actors"
+        transformToFormData={convertActorToFormData}
+        transform={transform}
+        >
+              {(actor, edit) => 
+                <ActorForm
+                model={actor}
+                onSubmit={async value => {
+                  await edit(value);
+              }} /> }
+</EditEntity>
         </>
     );
 }

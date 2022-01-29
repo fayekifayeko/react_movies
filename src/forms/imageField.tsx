@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from "react";
 
 interface ImageFieldProps{
     fieldLabel: string;
-    imgUrl?: string;
+    imgUrl?: string | File;
     fieldName: string;
 }
 
@@ -61,7 +61,7 @@ export default function ImageField(props: ImageFieldProps) {
 {imgUrl ? 
         <div>
             <div style={{marginTop: '10px'}}>
-                <img style={{width: '300px'}} src={imgUrl} alt="selected img" />
+                <img style={{width: '300px'}} src={typeof(imgUrl === 'string') ? imgUrl.toString() : undefined} alt="selected img" />
             </div>
         </div> :
         null   

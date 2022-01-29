@@ -10,6 +10,7 @@ interface EditEntityProps<T, TResp> {
     entityName: string;
     transform(resp: TResp): T;
     children(entity: T, edit: (entity: T) => void ): ReactElement;
+    transformToFormData?(entity: T):FormData;
 }
 
 export default  function EditEntity<T, TResp>(props: EditEntityProps<T, TResp>) {
@@ -20,8 +21,20 @@ export default  function EditEntity<T, TResp>(props: EditEntityProps<T, TResp>) 
     const history = useHistory();
 
     async function edit(entity: T) {
+
         try {
-              await axios.put(`${props.apiUrl}/${id}`, entity);
+
+            if(props.transformToFormData) {
+                await axios({
+                    url: `${props.apiUrl}/${id}`,
+                    method: 'put',
+                    data: props.transformToFormData(entity),
+                    headers: {'Content-Type': 'multipartformdata'}
+                });
+            } else {
+                await axios.put(`${props.apiUrl}/${id}`, entity);
+
+            }
               history.push(props.redirectUrl);
 
         } catch(err) {

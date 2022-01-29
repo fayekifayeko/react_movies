@@ -28,7 +28,7 @@ export default function ActorForm (props: ActorFormProps) {
                  <Form>
                  <TextField fieldLabel="Name" fieldName="name" />
                  <DateField fieldLabel="Date of birth" fieldName="dateOfBirth" />
-                 <ImageField fieldLabel="Image" fieldName="image" imgUrl={props.model.imgUrl}/>
+                 <ImageField fieldLabel="Picture" fieldName="picture" imgUrl={props.model.imgUrl}/>
                  <MarkdownField fieldName="biography" fieldLabel="biography" />
                   <Button disabled={formikProps.isSubmitting} type="submit">Save changes</Button>
                   <Link className="btn btn-secondary" to="/actors">Cancel</Link>

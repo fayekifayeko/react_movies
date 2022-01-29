@@ -35,7 +35,7 @@ export default function TheaterForm (props: TheaterFormProps) {
                  <Form>
                  <TextField fieldLabel="Name" fieldName="name" />
                  <div style={{marginBottom: '1rem'}}>
-                     <MapField latField="latitude" lngField="longitude" coordinates={transformCoordinates()}/>
+                     <MapField latField="langitude" lngField="longitude" coordinates={transformCoordinates()}/>
                  </div>
                   <Button disabled={formikProps.isSubmitting} type="submit">Save changes</Button>
                   <Link className="btn btn-secondary" to="/actors">Cancel</Link>

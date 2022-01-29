@@ -1,6 +1,6 @@
 export interface ActorTypeAhead {
-    id: number;
+    id?: number;
     name: string;
-    character: string;
-    picture: string;
+    character?: string;
+    picture?: File | string;
 }

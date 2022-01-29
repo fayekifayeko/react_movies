@@ -1,11 +1,38 @@
-import { Link } from "react-router-dom";
+import { actorsApiUrl } from "../endpoints";
+import { Actor } from "../models";
+import { IndexEntity } from "../shared";
 
 export default function Actors () {
     return (
         <>
-        <h1>Actors</h1>
-        <Link className="btn btn-primary" to="/actors/create"> Create an actor</Link>
-        <Link className="btn btn-primary" to="/actors/edit"> Edit an actor</Link>
+        <IndexEntity<Actor>
+         apiUrl={actorsApiUrl}
+         title={"Actors"}
+         entityName={"actor"}
+         createUrl={"/actors/create"}
+        >
+            {(actors, buttons) => 
+            <>
+            <thead>
+            <tr>
+            <th></th>
+            <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {actors.map(item => 
+                <tr key={item.id}>
+                    <td>
+                       {buttons(`actors/edit/${item.id}`, item.id)}
+                    </td>
+                    <td>{item.name}</td>
+                </tr>
+                )}
+        </tbody>
+        </>
+            }
+
+        </IndexEntity>
         </>
     );
 }

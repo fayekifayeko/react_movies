@@ -1,6 +1,8 @@
+import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
-import { Typeahead } from "react-bootstrap-typeahead";
-import { ActorTypeAhead } from "../models";
+import { AsyncTypeahead } from "react-bootstrap-typeahead";
+import { actorsApiUrl } from "../endpoints";
+import { Actor, ActorTypeAhead } from "../models";
 
 interface ActorsTypeAheadProps {
 fieldLabel: string;
@@ -13,20 +15,17 @@ listUI(actors: ActorTypeAhead): React.ReactNode;
 export default function ActorsTypeAhead(props: ActorsTypeAheadProps) {
 
     const [draggedItem, setDraggedItem] = useState<ActorTypeAhead | undefined>(undefined);
+    const [actors, setActors] = useState<Actor[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
-   const actors: ActorTypeAhead[] = [
-        {
-            id: 1, name: 'Fellip', character: '', picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Tom_Cruise_by_Gage_Skidmore_2.jpg/250px-Tom_Cruise_by_Gage_Skidmore_2.jpg'
-        },
-        {
-            id: 2, name: 'Fernando', character: '', picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Brad_Pitt_2019_by_Glenn_Francis.jpg/250px-Brad_Pitt_2019_by_Glenn_Francis.jpg'
- 
-        },
-        {
-            id: 3, name: 'Jessica', character: '', picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Angelina_Jolie_Global_Summit_2014.jpg/250px-Angelina_Jolie_Global_Summit_2014.jpg'
-
-        }
-    ];
+    function handleOnSearch(query: string) {
+        setIsLoading(true);
+        axios.get(`${actorsApiUrl}/searchByName/${query}`)
+        .then((resp: AxiosResponse<Actor[]>) => {
+            setActors(resp.data);
+            setIsLoading(false);
+        })
+    }
 
     function handleDragStart(actor: ActorTypeAhead) {
         setDraggedItem(actor);
@@ -50,7 +49,7 @@ export default function ActorsTypeAhead(props: ActorsTypeAheadProps) {
     return(
         <div className="mb-3">
         <label>{props.fieldLabel}</label>
-        <Typeahead
+        <AsyncTypeahead
         id="typeahead"
         onChange={actors => {
             if(props.actors.findIndex(item => item.id === actors[0].id) === -1) {
@@ -60,13 +59,16 @@ export default function ActorsTypeAhead(props: ActorsTypeAheadProps) {
         options={actors}
         selected={[]}
         labelKey={actor => actor.name}
-        filterBy={['name']}
+        //filterBy={['name']}
+        filterBy={() => true} // filtering will happen in the BE
+        isLoading={isLoading}
+        onSearch={handleOnSearch}
         placeholder="Write an actor name"
         minLength={1}
         flip={true}
         renderMenuItemChildren={actor => (
             <>
-            <img alt="actor" src={actor.picture} style={{height: '64px', width: '64px', marginRight: '1rem'}} />
+            <img alt="actor" src={actor.picture as string} style={{height: '64px', width: '64px', marginRight: '1rem'}} />
             <span>{actor.name}</span>
             </>
         )}

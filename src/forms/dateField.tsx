@@ -17,7 +17,7 @@ export default function DateField(props: DateFieldProps) {
              className="form-control"
              id={props.fieldName}
              name={props.fieldName}
-             defaultValue={values[props.fieldName]?.toISOString().substr(0, 10)}
+             defaultValue={values[props.fieldName]?.toISOString().substr(0, 10) }
              onChange={(e) =>{
                  const date = new Date(e.currentTarget.value + 'T00:00:00');
                  values[props.fieldName] = date;

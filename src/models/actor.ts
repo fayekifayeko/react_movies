@@ -5,4 +5,5 @@ export interface Actor {
     imgUrl?: string | File;
     picture?: File | string;
     biography?: string;
+    character?: string;
 }

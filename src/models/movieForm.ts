@@ -9,5 +9,6 @@ export interface MovieForm {
     trailer?: string;
     genresIds?: number[];
     theatersIds?:  number[];
-    actors: ActorTypeAhead[]
+    actors: ActorTypeAhead[];
+    summary?: string;
 }

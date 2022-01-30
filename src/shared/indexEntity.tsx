@@ -27,7 +27,7 @@ export default function IndexEntity<T>(props: IndexEntityProps<T>) {
     useEffect(() => {
         loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [page, recordsPerPage])
 
     async function deleteEntity(id: number) {
         try {

@@ -1,8 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { ReactElement, useEffect, useState } from "react";
-import { Loader } from "react-bootstrap-typeahead";
 import { useHistory, useParams } from "react-router-dom";
-import { DisplayErrors } from "../shared";
+import { DisplayErrors, Loader } from "../shared";
 
 interface EditEntityProps<T, TResp> {
     apiUrl: string;

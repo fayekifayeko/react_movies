@@ -8,6 +8,7 @@ import ImageField from "../forms/imageField";
 import MultiSelecField from "../forms/multiSelectField";
 import { useState } from "react";
 import { ActorsTypeAhead } from "../actors";
+import MarkdownField from "../forms/markdownField";
 
 interface MovieFormProps {
     model: MovieFormModel;
@@ -55,6 +56,7 @@ export default function MovieForm (props: MovieFormProps) {
                  <TextField fieldLabel="Trailer" fieldName="trailer" />
                  <CheckboxField fieldLabel="In theaters" fieldName="inTheaters" />
                  <DateField fieldLabel="Release date" fieldName="releaseDate" />
+                 <MarkdownField fieldLabel="Summary" fieldName="summary" />
                  <ImageField fieldLabel="Poster" fieldName="poster" imgUrl={props.model.posterUrl}/>
                  <MultiSelecField fieldLabel="Genres" selectedItems={selectedGenres} nonSelectedItems={nonSelectedGenres} onChange={
                      (selectedItems, nonSelectedItems) => {

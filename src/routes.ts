@@ -1,4 +1,4 @@
-import { LandingPage, CreateMovie, EditMovie, FilterMovies } from "./movies";
+import { LandingPage, CreateMovie, EditMovie, FilterMovies, MovieDetails } from "./movies";
 import { Genres, CreateGenre, EditGenre } from "./genres";
 import { Actors, CreateActor, EditActor } from "./actors";
 import { Theaters, CreateTheater, EditTheater } from "./theaters";
@@ -9,6 +9,8 @@ const routes = [
     {path: '/movies/create', component: CreateMovie},
     {path: '/movies/edit/:id(\\d+)', component: EditMovie},
     {path: '/movies/filter', component: FilterMovies},
+    {path: '/movies/:id(\\d+)', component: MovieDetails},
+
 
     {path: '/genres', component: Genres, exact: true},
     {path: '/genres/create', component: CreateGenre},

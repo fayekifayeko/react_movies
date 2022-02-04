@@ -3,4 +3,6 @@ export interface MoviesFilter {
     title: string;
     upcomingReleases: boolean;
     inTheaters: boolean;
+    page: number;
+    recordPerPage: number;
 }

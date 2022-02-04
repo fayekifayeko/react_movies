@@ -1,34 +1,82 @@
+
+import axios, { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { MovieForm } from ".";
-import { ActorTypeAhead, Genre, Theater } from "../models";
+import { moviesApiUrl } from "../endpoints";
+import { Actor, Genre, MovieForm as Movie, Theater } from "../models";
+import { DisplayErrors } from "../shared";
+import { convertMovieToFormData } from "../utils/convertMovieToFormData";
+
+
+interface EditedMovie {
+  movie: Movie;
+  selectedGenres: Genre[];
+  nonSelectedGenres: Genre[];
+  selectedTheaters:Theater[];
+  nonSelectedTheaters: Theater[];
+  actors: Actor[];
+}
 
 export default function EditMovie () {
-  const nonSelectedGenres: Genre[] = [{id: 1, name: 'Comedy'}];
-  const selectedGenres: Genre[] = [{id: 2, name: 'Drama'}];;
+  const {id}: any = useParams();
+  const [movie, setMovie] = useState<Movie>();
+  const [editedMovie, setEditedMovie] = useState<EditedMovie>();
+  const [errors, setErrors] = useState<string[]>([]);
 
-  const selectedTheaters: Theater[] = [{id: 1, name: 'Sampil'}];
-  const nonSelectedTheaters: Theater[] = [{id: 2, name: 'Aigora'}];
+ const history = useHistory();
 
-  const actors: ActorTypeAhead[] = [
-    {
-        id: 1, name: 'Fellip', character: '', picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Tom_Cruise_by_Gage_Skidmore_2.jpg/250px-Tom_Cruise_by_Gage_Skidmore_2.jpg'
+useEffect(() => {
+
+  axios.get(`${moviesApiUrl}/PutGet/${id}`)
+  .then((resp: AxiosResponse<EditedMovie>) => {
+    const movie: Movie = {
+      title: resp.data.movie.title,
+      posterUrl: resp.data.movie.poster,
+      inTheaters: resp.data.movie.inTheaters,
+      releaseDate: new Date(resp.data.movie.releaseDate || ''),
+      trailer: resp.data.movie.trailer,
+      summary: resp.data.movie.summary
     }
-];
+
+    setMovie(movie);
+    setEditedMovie(resp.data);
+
+  })
+},[id])
+
+async function update(movie: Movie) {
+  try {
+    const formData = convertMovieToFormData(movie);
+    axios(({
+      method: 'put',
+      url: `${moviesApiUrl}/${id}`,
+      data: formData,
+      headers: {'Content-Type': 'multipart/form-data'}
+    }));
+    history.push('/movies');
+
+  } catch(err) {
+    setErrors(err.response.data)
+  }
+}
 
     return (
         <>
         <h1>Edit Movie</h1>
-        <MovieForm
-          model={{title: 'Troy', inTheaters: true, releaseDate: new Date('2021-06-01T00:00:00'), actors}}
-          onSubmit={async values => {
-            await new Promise(r => setTimeout(r, 3000));
-            console.log(values);
+        <DisplayErrors errors={errors} />
+        {movie && editedMovie ? 
+          <MovieForm
+          model={movie}
+          onSubmit={async value => {
+            await update(value);
         }}
-        selectedGenres={selectedGenres}
-        nonSelectedGenres={nonSelectedGenres}
-        selectedTheaters={selectedTheaters}
-        nonSelectedTheaters={nonSelectedTheaters}
-        selectedActors={actors} 
-        />
+        selectedGenres={editedMovie?.selectedGenres}
+        nonSelectedGenres={editedMovie?.nonSelectedGenres}
+        selectedTheaters={editedMovie?.selectedTheaters}
+        nonSelectedTheaters={editedMovie?.selectedTheaters}
+        selectedActors={editedMovie?.actors} 
+        /> : null}
         </>
     );
 }

@@ -19,7 +19,7 @@ export default function CreateActor () {
       await axios(actorsApiUrl, {
         method: 'post',
         data: formData,
-        headers: {'Content-Type': 'multipart-formdata'}
+        headers: {'Content-Type': 'multipart/form-data'}
       });
       history.push('/actors');
     } catch(error) {

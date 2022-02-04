@@ -10,3 +10,4 @@ export * from './coordinate';
 export * from './movieForm';
 export * from './multiSelectedItem';
 export * from './actorTypeAhead';
+export * from './claim';

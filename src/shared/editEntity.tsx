@@ -28,7 +28,7 @@ export default  function EditEntity<T, TResp>(props: EditEntityProps<T, TResp>) 
                     url: `${props.apiUrl}/${id}`,
                     method: 'put',
                     data: props.transformToFormData(entity),
-                    headers: {'Content-Type': 'multipartformdata'}
+                    headers: {'Content-Type': 'multipart/form-data'}
                 });
             } else {
                 await axios.put(`${props.apiUrl}/${id}`, entity);

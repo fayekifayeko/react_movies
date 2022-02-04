@@ -2,13 +2,13 @@ import { ActorTypeAhead } from ".";
 
 export interface MovieForm {
     title: string;
-    poster?: File;
+    poster?: string;
     inTheaters: boolean;
     posterUrl?: string;
     releaseDate?: Date;
     trailer?: string;
     genresIds?: number[];
     theatersIds?:  number[];
-    actors: ActorTypeAhead[];
+    actors?: ActorTypeAhead[];
     summary?: string;
 }

@@ -18,14 +18,13 @@ export default function CreateMovie () {
   async function create(movie: MovieFormModel){
     try {
 
-      console.log('hiiiiiiiii', movie);
 
       const formData = convertMovieToFormData(movie);
       const resp = await axios({
         url: `${moviesApiUrl}`,
         method: 'post',
         data: formData,
-        headers: {'Content-Type': 'multipart-formdata'}
+        headers: {'Content-Type': 'multipart/form-data'}
       });
 
       history.push(`/movie/${resp.data}`)

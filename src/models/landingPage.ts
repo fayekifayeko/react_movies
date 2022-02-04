@@ -1,6 +1,6 @@
 import { Movie } from ".";
 
 export interface LandingPage {
-    inTheatersMovies?: Movie[];
-    upcomingMovies?: Movie[];
+    inTheaters?: Movie[];
+    upcomingReleases?: Movie[];
 }

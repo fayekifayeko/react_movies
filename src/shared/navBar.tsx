@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { Authorized } from "../auth";
 
 export default function NavBar () {
     return (
@@ -10,7 +11,11 @@ export default function NavBar () {
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
+        <Authorized 
+        role="admin"
+        authorized={
+          <>
+              <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/genres">Genres</NavLink>
         </li>
         <li className="nav-item">
@@ -21,7 +26,11 @@ export default function NavBar () {
           <NavLink className="nav-link active" aria-current="page" to="/movies/create">Create a movie</NavLink>
         </li> <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/movies/edit">Edit a movie</NavLink>
-        </li> <li className="nav-item">
+        </li> 
+          </>
+        }
+        />
+    <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/movies/filter">Filter movies</NavLink>
         </li>
       </ul>

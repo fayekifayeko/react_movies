@@ -74,7 +74,7 @@ export default function ActorsTypeAhead(props: ActorsTypeAheadProps) {
         )}
         />
         <ul className="list-group">
-            {props.actors.map(item => 
+            {props.actors?.map(item => 
             (
             <li key={item.id} 
             className="list-group-item list-group-item-action"

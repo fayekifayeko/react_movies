@@ -11,9 +11,11 @@ function App() {
   configureValidations();
 
   const [claims, setClaims] = useState<Claim[]>([
-    {name: 'email', value:'fff@hotmail.com'},
-    {name:'role', value: 'admin'}
+    // {name: 'email', value:'fff@hotmail.com'},
+    // {name:'role', value: 'bbb'}
   ]);
+
+  const isAdmin = () => claims.findIndex(item => item.name === 'role' && item.value === 'admin') > -1;
 
   return (
     <BrowserRouter>
@@ -22,7 +24,12 @@ function App() {
    <div className="container">
      <Switch>
      {routes.map(route => 
-      (<Route key={route.path} path={route.path} exact={route.exact}>{<route.component />}</Route>))}
+      (
+      <Route key={route.path} path={route.path} exact={route.exact}>
+        { route.isAdmin && !isAdmin() ? <>You are not allowed to see this page</> :
+        <route.component />}</Route>
+      
+      ))}
      </Switch>
     </div>
     <footer className="bd-footer py-5 mt-5 bg-light">

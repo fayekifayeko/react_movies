@@ -11,3 +11,5 @@ export * from './movieForm';
 export * from './multiSelectedItem';
 export * from './actorTypeAhead';
 export * from './claim';
+export * from './authResp';
+export * from './userCredentials';

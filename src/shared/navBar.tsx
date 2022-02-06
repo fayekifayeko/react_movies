@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Authorized } from "../auth";
 
 export default function NavBar () {
@@ -29,11 +29,23 @@ export default function NavBar () {
         </li> 
           </>
         }
-        />
+        />     
     <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/movies/filter">Filter movies</NavLink>
         </li>
       </ul>
+      <div className="d-flex">
+          <Authorized
+          authorized={<></>}
+          nonAuthorized={
+            <>
+            <Link className="btn btn-link nav-link" to={'/register'}>Register</Link>
+            <Link className="btn btn-link nav-link" to={'/login'}>Login</Link>
+            </>
+          }
+          
+          />
+        </div>
     </div>
   </div>
 </nav>

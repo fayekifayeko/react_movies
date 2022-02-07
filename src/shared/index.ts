@@ -7,3 +7,4 @@ export {default as DisplayErrors } from './displayErrors';
 export {default as RecordPerPageSelector } from './recordPerPageSelector';
 export {default as EditEntity } from './editEntity';
 export {default as IndexEntity } from './indexEntity';
+export {default as Rating } from './rating';

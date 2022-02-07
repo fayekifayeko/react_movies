@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
 import { moviesApiUrl } from "../endpoints";
 import { Genre, Theater, Actor, Coordinate } from "../models";
-import { Loader, Map } from "../shared";
+import { Loader, Map, Rating } from "../shared";
 
 interface MovieDetailsProps {
     id: number;
@@ -67,7 +67,7 @@ export default function MovieDetails(){
                style={{marginRight: '1rem'}}
                >
                    {item.name}
-                   </Link>)} | {movieDetails.releaseDate.toDateString()}
+                   </Link>)} | {movieDetails.releaseDate.toDateString()} | Your vote: <Rating maxValue={5} selectedValue={0} onChange={() => {}} />
                    <div style={{display: 'flex', marginTop: '1rem'}}>
                        <img
                         src={movieDetails.poster}

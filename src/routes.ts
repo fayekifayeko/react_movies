@@ -8,9 +8,9 @@ import { Login, Register } from "./auth";
 const routes = [
     {path: '/', component: LandingPage, exact: true},
     {path: '/movies/create', component: CreateMovie, isAdmin: true},
-    {path: '/movies/edit/:id(\\d+)', component: EditMovie, isAdmin: false},
+    {path: '/movies/edit/:id(\\d+)', component: EditMovie, isAdmin: true},
     {path: '/movies/filter', component: FilterMovies},
-    {path: '/movies/:id(\\d+)', component: MovieDetails,  isAdmin: false},
+    {path: '/movies/:id(\\d+)', component: MovieDetails,  isAdmin: true},
 
 
     {path: '/genres', component: Genres, exact: true, isAdmin: true},

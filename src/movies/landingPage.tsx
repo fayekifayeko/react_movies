@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { MoviesList } from ".";
-import { Authorized } from "../auth";
 import loadDataContext from "../context/loadDataContext";
 import { moviesApiUrl } from "../endpoints";
 import { LandingPage as  LandingPageModel} from '../models';
@@ -21,7 +20,6 @@ function loadData() {
 }
     return (
         <loadDataContext.Provider value={loadData} >
-          <Authorized authorized={<>You are authorized</>} nonAuthorized={<>You are NOT authorized</>} role="admin" />
         <h1>In Theaters Movies</h1>
         <MoviesList movies={movies.inTheaters}/>
       

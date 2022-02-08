@@ -2,7 +2,8 @@ import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
-import { moviesApiUrl } from "../endpoints";
+import Swal from "sweetalert2";
+import { moviesApiUrl, ratingsApiUrl } from "../endpoints";
 import { Genre, Theater, Actor, Coordinate } from "../models";
 import { Loader, Map, Rating } from "../shared";
 
@@ -54,6 +55,17 @@ export default function MovieDetails(){
        
     }
 
+    
+    function handleRateChange(rate: number) {
+        axios.post(ratingsApiUrl, {rating: rate, movieId: id})
+        .then(() => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Rating received'
+            })
+        })
+    }
+
     return(
         movieDetails
          ? 
@@ -67,7 +79,7 @@ export default function MovieDetails(){
                style={{marginRight: '1rem'}}
                >
                    {item.name}
-                   </Link>)} | {movieDetails.releaseDate.toDateString()} | Your vote: <Rating maxValue={5} selectedValue={0} onChange={() => {}} />
+                   </Link>)} | {movieDetails.releaseDate.toDateString()} | Your vote: <Rating maxValue={5} selectedValue={0} onChange={handleRateChange} />
                    <div style={{display: 'flex', marginTop: '1rem'}}>
                        <img
                         src={movieDetails.poster}

@@ -5,4 +5,5 @@ export const actorsApiUrl = `${apiUrl}/actors`;
 export const theatersApiUrl = `${apiUrl}/theaters`;
 export const moviesApiUrl = `${apiUrl}/movies`;
 export const accountsApiUrl = `${apiUrl}/accounts`;
+export const ratingsApiUrl = `${apiUrl}/ratings`;
 

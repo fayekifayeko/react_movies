@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { getClaims } from './auth/handleJwtToken';
 import AuthunticateContext from './context/authenticateContext';
 import { Claim } from './models';
 import routes from './routes';
@@ -16,6 +17,10 @@ function App() {
   ]);
 
   const isAdmin = () => claims.findIndex(item => item.name === 'role' && item.value === 'admin') > -1;
+
+  useEffect(() => {
+    setClaims(getClaims())
+  }, [])
 
   return (
     <BrowserRouter>

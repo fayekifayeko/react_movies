@@ -18,6 +18,8 @@ interface MovieDetailsProps {
     theaters:  Theater[];
     actors: Actor[];
     summary?: string;
+    userVote: number;
+    averageVote: number;
 }
 
 export default function MovieDetails(){
@@ -79,7 +81,7 @@ export default function MovieDetails(){
                style={{marginRight: '1rem'}}
                >
                    {item.name}
-                   </Link>)} | {movieDetails.releaseDate.toDateString()} | Your vote: <Rating maxValue={5} selectedValue={0} onChange={handleRateChange} />
+                   </Link>)} | {movieDetails.releaseDate.toDateString()} | Your vote: <Rating maxValue={5} selectedValue={movieDetails.userVote} onChange={handleRateChange} /> | Average vote = {movieDetails.averageVote}
                    <div style={{display: 'flex', marginTop: '1rem'}}>
                        <img
                         src={movieDetails.poster}

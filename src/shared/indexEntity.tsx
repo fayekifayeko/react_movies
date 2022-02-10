@@ -12,7 +12,7 @@ interface IndexEntityProps<T> {
     apiUrl: string;
     title: string;
     entityName: string;
-    createUrl: string;
+    createUrl?: string;
     children(entities: T[], buttons: (editUrl:string, id?:number) => ReactElement): ReactElement;
 }
 
@@ -59,7 +59,8 @@ export default function IndexEntity<T>(props: IndexEntityProps<T>) {
     return (
         <>
         <h1>{props.title}</h1>
-        <Link style={{marginRight: '1rem'}} className="btn btn-primary" to={props.createUrl}>{`Create a ${props.entityName}`}</Link>
+        {props.createUrl ? <Link style={{marginRight: '1rem'}} className="btn btn-primary" to={props.createUrl}>{`Create a ${props.entityName}`}</Link>
+ : null}
         <RecordPerPageSelector onChange={value => {
            setPage(1);
            setRecordsPerPage(value);

@@ -5,11 +5,13 @@ import AuthunticateContext from './context/authenticateContext';
 import { Claim } from './models';
 import routes from './routes';
 import NavBar from './shared/navBar';
+import configureInterceptor from './utils/httpInterceptor';
 import configureValidations from './utils/validations';
 
 function App() {
 
   configureValidations();
+  configureInterceptor();
 
   const [claims, setClaims] = useState<Claim[]>([
     // {name: 'email', value:'fff@hotmail.com'},

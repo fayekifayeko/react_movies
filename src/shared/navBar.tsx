@@ -38,6 +38,9 @@ export default function NavBar () {
         </li> <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/movies/edit">Edit a movie</NavLink>
         </li> 
+        <li className="nav-item">
+          <NavLink className="nav-link active" aria-current="page" to="/users">Users</NavLink>
+        </li>
           </>
         }
         />     

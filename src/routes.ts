@@ -3,14 +3,14 @@ import { Genres, CreateGenre, EditGenre } from "./genres";
 import { Actors, CreateActor, EditActor } from "./actors";
 import { Theaters, CreateTheater, EditTheater } from "./theaters";
 import RedirectToLandingPage from "./shared/redirectToLandingPage";
-import { Login, Register } from "./auth";
+import { Login, Register, Users } from "./auth";
 
 const routes = [
     {path: '/', component: LandingPage, exact: true},
     {path: '/movies/create', component: CreateMovie, isAdmin: true},
     {path: '/movies/edit/:id(\\d+)', component: EditMovie, isAdmin: true},
     {path: '/movies/filter', component: FilterMovies},
-    {path: '/movies/:id(\\d+)', component: MovieDetails,  isAdmin: true},
+    {path: '/movies/:id(\\d+)', component: MovieDetails},
 
 
     {path: '/genres', component: Genres, exact: true, isAdmin: true},
@@ -27,6 +27,7 @@ const routes = [
 
     {path: '/register', component: Register},
     {path: '/login', component: Login},
+    {path: '/users', component: Users, exact: true, isAdmin: true},
 
 
     {path: "*", component: RedirectToLandingPage}

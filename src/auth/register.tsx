@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthForm } from ".";
+import AuthunticateContext from "../context/authenticateContext";
 import { accountsApiUrl } from "../endpoints";
 import { AuthResp, UserCredentials } from "../models";
 import { DisplayErrors } from "../shared";
@@ -38,13 +39,4 @@ export default function Register() {
             />
         </>
     );
-}
-
-function useContext(AuthunticateContext: any): { update: any; } {
-    throw new Error("Function not implemented.");
-}
-
-
-function AuthunticateContext(AuthunticateContext: any): { update: any; } {
-    throw new Error("Function not implemented.");
 }

@@ -26,10 +26,15 @@ export function getClaims(): Claim[] {
     for(const prop in tokenData) {
         response.push({name: prop, value: tokenData[prop]});
     }
+    console.log('claims', response)
 return response;
 }
 
 export function logout() {
     localStorage.removeItem(tokenKey);
     localStorage.removeItem(expirationKey);
+}
+
+export function getToken() {
+    return localStorage.getItem(tokenKey);
 }

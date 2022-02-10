@@ -13,3 +13,4 @@ export * from './actorTypeAhead';
 export * from './claim';
 export * from './authResp';
 export * from './userCredentials';
+export * from './User';
